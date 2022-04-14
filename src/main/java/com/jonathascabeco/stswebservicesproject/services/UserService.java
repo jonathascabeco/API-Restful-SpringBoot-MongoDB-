@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jonathascabeco.stswebservicesproject.domain.User;
+import com.jonathascabeco.stswebservicesproject.dto.UserDTO;
 import com.jonathascabeco.stswebservicesproject.repository.UserRepository;
 import com.jonathascabeco.stswebservicesproject.services.exceptions.ObjectNotFoundExceptions;
 
@@ -24,5 +25,15 @@ public class UserService {
 	public User findById(String id) {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundExceptions("Objeto não encontrado"));
+	}
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	//nao foi feito no UserDto, pois aqui ja tem uma instanciação pro bd, caso precise de alguma
+	//manutenção;
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 }
