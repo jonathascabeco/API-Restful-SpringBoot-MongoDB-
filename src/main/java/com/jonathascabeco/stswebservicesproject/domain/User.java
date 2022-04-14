@@ -3,23 +3,28 @@ package com.jonathascabeco.stswebservicesproject.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document //mapea a coleçao com o mesmo nome da classe so que em letra minuscula;
+// dizer que faz parte da coleçao mongodb;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
+	@Id
 	private String id;
-	private String nameString;
 	private String name;
+	private String email;
 	
 	public User() {
 		
 	}
 
-	public User(String id, String nameString, String name) {
+	public User(String id, String name, String email) {
 		super();
 		this.id = id;
-		this.nameString = nameString;
 		this.name = name;
+		this.email = email;
 	}
 
 	public String getId() {
@@ -30,20 +35,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getNameString() {
-		return nameString;
-	}
-
-	public void setNameString(String nameString) {
-		this.nameString = nameString;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
@@ -61,5 +66,5 @@ public class User implements Serializable {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
 }

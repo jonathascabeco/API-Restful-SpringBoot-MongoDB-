@@ -9,5 +9,4 @@ public class RestfulSbMongodbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestfulSbMongodbApplication.class, args);
 	}
-
 }
