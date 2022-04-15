@@ -18,7 +18,6 @@ public class UserService {
 	private UserRepository repo;
 
 	public List<User> findAll() {
-		// tem de conversar com o repositório
 		return repo.findAll();
 	}
 
@@ -37,19 +36,16 @@ public class UserService {
 	}
 
 	public User update(User obj) {
-		User newObj = findById(obj.getId());// obj original do db Mongo;
+		User newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
 
 	private void updateData(User newObj, User obj) {
 		newObj.setName(obj.getName());
-		newObj.setEmail(obj.getEmail());		
+		newObj.setEmail(obj.getEmail());
 	}
 
-	// nao foi feito no UserDto, pois aqui ja tem uma instanciação pro bd, caso
-	// precise de alguma
-	// manutenção;
 	public User fromDTO(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}

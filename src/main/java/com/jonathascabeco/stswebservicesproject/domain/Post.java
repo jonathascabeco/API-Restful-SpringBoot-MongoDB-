@@ -15,18 +15,18 @@ import com.jonathascabeco.stswebservicesproject.dto.CommentDTO;
 @Document
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
 	private Date date;
 	private String title;
 	private String body;
 	private AuthorDTO author;
-	
+
 	private List<CommentDTO> comments = new ArrayList<>();
-	
+
 	public Post() {
-		
+
 	}
 
 	public Post(String id, Date date, String title, String body, AuthorDTO author) {
@@ -68,7 +68,7 @@ public class Post implements Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
-	}	
+	}
 
 	public AuthorDTO getAuthorDTO() {
 		return author;
@@ -77,7 +77,7 @@ public class Post implements Serializable {
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
-	
+
 	public List<CommentDTO> getComments() {
 		return comments;
 	}
@@ -101,5 +101,5 @@ public class Post implements Serializable {
 			return false;
 		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
 }

@@ -9,9 +9,9 @@ public class CommentDTO implements Serializable {
 	private String text;
 	private Date date;
 	private AuthorDTO author;
-	
+
 	public CommentDTO() {
-		
+
 	}
 
 	public CommentDTO(String text, Date date, AuthorDTO author) {
@@ -43,5 +43,5 @@ public class CommentDTO implements Serializable {
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
-	}	
+	}
 }

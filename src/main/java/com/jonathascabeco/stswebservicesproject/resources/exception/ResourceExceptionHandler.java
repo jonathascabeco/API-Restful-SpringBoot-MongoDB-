@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.jonathascabeco.stswebservicesproject.services.exceptions.ObjectNotFoundExceptions;
 
 @ControllerAdvice
-//indica que essa classe trata possiveis erros nas requisições;
 public class ResourceExceptionHandler {
-	
+
 	@ExceptionHandler(ObjectNotFoundExceptions.class)
-	//padrao para tratamento de exceções;
-	public ResponseEntity<StandardError> objNotFound(ObjectNotFoundExceptions e, HttpServletRequest request){
+	public ResponseEntity<StandardError> objNotFound(ObjectNotFoundExceptions e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Not found", e.getMessage(), request.getRequestURI());
-		return ResponseEntity.status(status).body(err);		
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Not found", e.getMessage(),
+				request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
 	}
 }
