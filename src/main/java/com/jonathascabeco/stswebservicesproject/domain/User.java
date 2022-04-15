@@ -1,9 +1,12 @@
 package com.jonathascabeco.stswebservicesproject.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document //mapea a coleçao com o mesmo nome da classe so que em letra minuscula;
@@ -15,6 +18,11 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 	private String email;
+	
+	@DBRef(lazy = true)//posts só serão carregados quando especificado, evitar consumo exacerbado de dados;
+	private List<Post> posts = new ArrayList<>();
+	//boa prática, referenciando a lista; esta está sendo criada para referenciar os 
+	//posts aos usuários;
 	
 	public User() {
 		
@@ -49,6 +57,14 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override
@@ -67,4 +83,5 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }
