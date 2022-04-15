@@ -1,5 +1,6 @@
 package com.jonathascabeco.stswebservicesproject.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -22,4 +23,8 @@ public interface PostRepository extends MongoRepository<Post, String> {
 		//uma solicitação JSON para consulta desejada, no caso, o que for escrito na 
 		//string text; IgnoreCase para ignorar se é maiuscula ou minuscula
 		
+		@Query("{ $and: [ { date: {$gte: ?1} }, { date: { $lte: ?2} } , { $or: [ { 'title': { $regex: ?0, $options: 'i' } }, { 'body': { $regex: ?0, $options: 'i' } }, { 'comments.text': { $regex: ?0, $options: 'i' } } ] } ] }")
+		// ou ele busca pelos campos pela string
+		// e tem de estar entre a data min e max.
+		List<Post> fullSearch(String text, Date minDate, Date maxDate);	
 }
